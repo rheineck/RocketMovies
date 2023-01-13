@@ -14,7 +14,7 @@ export const Content = styled.div`
 
     padding: 40px 124px;
     
-    > header, button {
+    > header, a {
         display: flex;
         align-items: center;
         font-size: 16px;

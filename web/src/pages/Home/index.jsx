@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import { FiPlus } from "react-icons/fi"
 
 import { Container, Content, Cards } from './styles'
@@ -15,17 +17,25 @@ export function Home() {
                 <Content>
                     <div className="topInfo">
                         <h1>Meus Filmes</h1>
-                        <Button
-                            title=" Adicionar Filme"
-                            icon={FiPlus}
-                        />
+                        <Link to='/new'>
+                            <Button
+                                title=" Adicionar Filme"
+                                icon={FiPlus}
+                            />
+                        </Link>
                     </div>
 
                     <div className="cards">
                         <Cards>
-                            <Card />
-                            <Card />
-                            <Card />
+                            <Link to='/details/:id'>
+                                <Card />
+                            </Link>
+                            <Link to='/details/:id'>
+                                <Card />
+                            </Link>
+                            <Link to='/details/:id'>
+                                <Card />
+                            </Link>
                         </Cards>
                     </div>
                 </Content>

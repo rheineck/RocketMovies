@@ -18,9 +18,13 @@ export const Container = styled.div`
     header button {
         border: none;
         background: none;
-        color: ${({ theme }) => theme.COLORS.PURPLE};
-
+        
         font-size: 16px;
+    }
+    
+    a {
+        text-decoration: none;
+        color: ${({ theme }) => theme.COLORS.PURPLE};
     }
     
 `

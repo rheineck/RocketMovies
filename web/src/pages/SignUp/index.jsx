@@ -4,6 +4,7 @@ import { RxPerson } from 'react-icons/rx'
 
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
+import { Link } from 'react-router-dom'
 
 export function SignUp () {
 
@@ -13,7 +14,7 @@ export function SignUp () {
                 <h1>RocketMovies</h1>
                 <p>Aplicação para acompanhar tudo que assistir.</p>
 
-                <h2>Faça seu Login</h2>
+                <h2>Registre-se!</h2>
 
                 <Input 
                     placeholder="Nome"
@@ -43,10 +44,10 @@ export function SignUp () {
                     title="Crie Sua Conta"
                 />
 
-                <a>
+                <Link to='/'>
                     <FiArrowLeft size={20}/>
                     Voltar para o Login
-                </a>
+                </Link>
             </Form>
 
             <Background />

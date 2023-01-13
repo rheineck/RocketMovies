@@ -8,6 +8,7 @@ import { MovieItem } from '../../components/MovieItem'
 import { TextArea } from '../../components/TextArea'
 
 import { Container, Form } from './styles'
+import { Link } from 'react-router-dom'
 
 export function CreateMovie () {
     return(
@@ -15,8 +16,10 @@ export function CreateMovie () {
             <Header />
             <header>
                 <button type='button'>
-                    <FiArrowLeft />
-                    Voltar
+                    <Link to='/'>
+                        <FiArrowLeft />
+                        Voltar
+                    </Link>
                 </button>
             </header>
 

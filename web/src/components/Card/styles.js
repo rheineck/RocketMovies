@@ -8,6 +8,7 @@ export const Container = styled.div`
 
     h1 {
         font-size: 24px;
+        color: ${({ theme }) => theme.COLORS.WHITE}
     }
 
     .stars {

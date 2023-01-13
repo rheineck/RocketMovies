@@ -4,15 +4,16 @@ import { Container, Form, Avatar } from './styles'
 
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
+import { Link } from 'react-router-dom'
 
 export function Profile () {
     return (
         <Container>
             <header>
-            <button type='button' >
+                <Link to='/'>
                     <FiArrowLeft size={24}/>
                     Voltar
-                </button>
+                </Link>
             </header>
 
             <Form>

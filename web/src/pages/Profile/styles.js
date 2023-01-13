@@ -19,7 +19,7 @@ export const Container = styled.div`
             font-size: 24px;
         }
 
-        button {
+        a {
             background: none;
             border: none;
 

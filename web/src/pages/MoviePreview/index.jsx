@@ -5,6 +5,7 @@ import { Container, Content } from './styles'
 
 import { Header } from '../../components/Header'
 import { Tag } from '../../components/Tag'
+import { Link } from 'react-router-dom'
 
 export function MoviePreview () {
     return (
@@ -13,10 +14,10 @@ export function MoviePreview () {
 
             <Content>
                 <header>
-                    <FiArrowLeft />
-                    <button>
+                    <Link to='/'>
+                        <FiArrowLeft />
                         Voltar
-                    </button>
+                    </Link>
                 </header>
 
                 <div className="movieHeader">
