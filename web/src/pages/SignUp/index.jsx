@@ -23,12 +23,6 @@ export function SignUp () {
                 />
 
                 <Input 
-                    placeholder="Sobrenome"
-                    type="text"
-                    icon={RxPerson}
-                />
-
-                <Input 
                     placeholder="E-mail"
                     type="text"
                     icon={FiMail}
