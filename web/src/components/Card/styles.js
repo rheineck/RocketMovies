@@ -11,11 +11,6 @@ export const Container = styled.div`
         color: ${({ theme }) => theme.COLORS.WHITE}
     }
 
-    .stars {
-        color: ${({ theme }) => theme.COLORS.PURPLE};
-        margin-top: 8px;
-    }
-
     p {
         font-family: 'Roboto', serif;
         color: ${({ theme }) => theme.COLORS.BACKGROUND_350};

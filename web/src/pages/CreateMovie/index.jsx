@@ -9,8 +9,52 @@ import { TextArea } from '../../components/TextArea'
 
 import { Container, Form } from './styles'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { api } from '../../services/api'
 
 export function CreateMovie () {
+    const [tags, setTags] = useState([])
+    const [newTag, setNewTag] = useState("")
+    const [title, setTitle] = useState("")
+    const [description, setDescription] = useState("")
+    const [rating, setRating] = useState(null)
+
+    const navigate = useNavigate()
+
+    function handleAddTag() {
+        setTags(prevState => [...prevState, newTag])
+        setNewTag("")
+    }
+
+    function handleRemoveTag(deleted) {
+        setTags(prevState => prevState.filter(tag => tag !== deleted))
+    }
+
+    async function handleNewNote() {
+        if(!title || !description || !rating) {
+            return alert('Complete todos os campos!')
+        }
+
+        if(tags.length === 0) {
+            return alert('Preencha pelo menos uma tag!')
+        }
+
+        if(newTag) {
+            return alert("Você deixou uma tag no campo para adicionar!")
+        }
+
+        await api.post('/notes', {
+            title,
+            description,
+            rating,
+            tags
+        })
+
+        alert("Filme adicionado com sucesso!")
+        navigate('/')
+    }
+
     return(
         <Container>
             <Header />
@@ -32,6 +76,7 @@ export function CreateMovie () {
                         <Input 
                             placeholder='Título'
                             type='text'
+                            onChange={e => setTitle(e.target.value)}
                         />
                     </div>
 
@@ -39,6 +84,7 @@ export function CreateMovie () {
                         <Input 
                             placeholder='Sua nota (0 a 5)'
                             type='number'
+                            onChange={e => setRating(e.target.value)}
                         />
                     </div>
                 </div>
@@ -46,18 +92,27 @@ export function CreateMovie () {
                     <TextArea 
                         placeholder='Observações'
                         type='textarea'
+                        onChange={e => setDescription(e.target.value)}
                     />
 
                 <Section title='Marcadores'>
 
                     <div className="tags">
-                        <MovieItem 
-                            placeholder='React'
-                        />
+                        {
+                            tags.map((tag, index) => (
+                            <MovieItem
+                                key={String(index)}
+                                value={tag}
+                                onClick={() => handleRemoveTag(tag)}
+                            />))
+                        }
 
                         <MovieItem 
                             isNew
                             placeholder='Nova tag'
+                            onChange={e => setNewTag(e.target.value)}
+                            value={newTag}
+                            onClick={handleAddTag}
                         />
                     </div>
 
@@ -69,6 +124,7 @@ export function CreateMovie () {
                     />
                     <Button 
                         title='Salvar Alterações'
+                        onClick={handleNewNote}
                     />
                 </footer>
 

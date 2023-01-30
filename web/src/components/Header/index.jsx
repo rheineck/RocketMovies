@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { useAuth } from '../../hooks/auth'
@@ -9,19 +10,32 @@ import { Input } from "../Input";
 
 import { Container, Profile } from './styles'
 
-export function Header() {
+export function Header({ ...rest }) {
     const { signOut, user } = useAuth()
 
     const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder
 
+    const [search, setSearch] = useState("")
+    const [notes, setNotes] = useState([])
+
+    useEffect(() => {
+        async function fetchNotes() {
+            const response = await api.get(`/notes?title=${search}`)
+            setNotes(response.data)
+        }
+        
+        fetchNotes()
+    },[search])
+
     return (
-        <Container>
+        <Container {...rest}>
             <h1>RocketMovies</h1>
             <div className="search">
                 <Input 
                     placeholder='Pesquise o título'
                     type='text'
                     icon={FiSearch}
+                    onChange={e => setSearch(e.target.value)}
                 />
             </div>
             <div className="profile">

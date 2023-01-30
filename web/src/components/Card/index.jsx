@@ -1,38 +1,48 @@
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
+import { useEffect, useState } from 'react'
+
 
 import { Container } from './styles'
 
 import { Tag } from '../Tag'
+import { Stars } from '../Stars'
+import { api } from '../../services/api'
 
-export function Card() {
+export function Card({ data, ...rest }) {
+    
+    const [tags, setTags] = useState([])
+    
+    useEffect(() => {
+        async function fetchTags() {
+            const response = await api.get('/tags')
+            setTags(response.data)
+        }
+
+        fetchTags()
+
+    },[])
+    
     return (
-        <Container>
-            <h1>Meu Filme</h1>
-            <div className="stars">
-                <AiFillStar />
-                <AiFillStar />
-                <AiFillStar />
-                <AiFillStar />
-                <AiOutlineStar />
-            </div>
-            
+        <Container {...rest}>
+            <h1>{data.title}</h1>
+            <Stars 
+                rating={data.rating}
+            />
 
             <div className="text">
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, quod aperiam voluptatem nihil, doloremque tempora odio cum tempore totam saepe assumenda perspiciatis vero eveniet, molestiae molestias aut magnam quas natus!
+                    {data.description}
                 </p>
             </div>
 
             <div className="tags">
-                <Tag 
-                    title="Ficção Científica"
-                />
-                <Tag 
-                    title="Drama"
-                />
-                <Tag 
-                    title="Família"
-                />
+                {
+                    data.tags && data.tags.map(tag => (
+                        <Tag 
+                            key={String(tag.id)}
+                            title={tag.name}
+                        />
+                    ))
+                }
             </div>    
         </Container>
     )
