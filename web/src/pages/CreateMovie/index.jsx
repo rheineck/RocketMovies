@@ -31,6 +31,16 @@ export function CreateMovie () {
         setTags(prevState => prevState.filter(tag => tag !== deleted))
     }
 
+    function handleDiscardMovie() {
+        const userConfirmation = confirm(
+            "Todas as alterações seão descartadas! Deseja continuar?"
+        )
+
+        if(userConfirmation) {
+            navigate(-1)
+        }
+    }
+
     async function handleNewNote() {
         if(!title || !description || !rating) {
             return alert('Complete todos os campos!')
@@ -121,6 +131,7 @@ export function CreateMovie () {
                 <footer>
                     <Button 
                         title='Excluir Filme'
+                        onClick={handleDiscardMovie}
                     />
                     <Button 
                         title='Salvar Alterações'
