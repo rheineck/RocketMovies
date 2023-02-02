@@ -48,7 +48,9 @@ export function MoviePreview () {
                     <div className="movieHeader">
                         <h1>{data.title}</h1>
                         <div className="stars">
-                            <Stars />
+                            <Stars 
+                                rating={data.rating}
+                            />
                         </div>
                     </div>
 
